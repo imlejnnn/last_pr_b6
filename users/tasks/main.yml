@@ -1,0 +1,14 @@
+- name: Add the user "user88"
+  user:
+    name: user88
+    state: present
+
+- name: Create a directory if it does not exist
+  file:
+    path: /home/user88/.ssh/
+    state: directory
+
+- name: Copy SSH key
+  copy:
+    src: ssh-key.pub
+    dest: /home/user88/.ssh/authorized_keys

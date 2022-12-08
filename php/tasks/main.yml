@@ -1,0 +1,16 @@
+---
+# tasks file for php
+- name: Install php-fpm
+  yum:
+    name: php-fpm
+    state: present
+
+- name: Put php-fpm "www" file
+  copy:
+    src: www.conf
+    dest: /etc/php/php-fpm.d/www.conf
+
+- name: Make sure service "php-fpm" running
+  systemd:
+    state: started
+    name: php-fpm

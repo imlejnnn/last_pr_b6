@@ -1,0 +1,16 @@
+---
+# tasks file for http
+- name: Install nginx
+  yum:
+    name: nginx
+    state: present
+
+- name: Put nginx config file
+  copy:
+    src: test-server.conf
+    dest: /etc/nginx/conf.d/test-server.conf
+
+- name: Make sure service "nginx" running
+  systemd:
+    state: started
+    name: nginx
